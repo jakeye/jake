@@ -1,13 +1,24 @@
-﻿<!DOCTYPE html>
+﻿
+
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8"/>
     <title>表格的添加与删除</title>
+    <link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css" media="all"/>
+    <link rel="stylesheet" type="text/css" href="../css/bootstrap-theme.min.css" media="all"/>
+    <link rel="stylesheet" type="text/css" href="../css/reset.css" media="all"/>
     <style type="text/css">
         .demo{ width:600px;margin:50px auto; text-align:left; padding:0; }   
 		<!--margin设置外边距，上、下外边距为50，左右自适应居中；内边距为0；文本为左对齐-->
         .row{ margin-bottom:20px;}
-       
+
+		.list{ color:#2a6496;}
+        .list li{ position:relative; width:320px;list-style:decimal inside;line-height:35px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+        .list a{font-size:18px;}
+        .tip{position:absolute;left: 0;display:none;color:#fff;background:rgba(0,0,0, 0.6); line-height:25px;font-size:12px;padding:2px 5px;border-radius:5px;z-index:1}
+        .ellipsis{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+        
 		.table{border-collapse:collapse; border:1px solid #ccc;}
         /**表格边框合并；实线灰色**/
 		
@@ -25,57 +36,46 @@
 		
         .table tr.on td{background: #ffffff;} /**??**/
     </style>
-	
-<script type="text/javascript">
-function deleteRow(r)
-  {
-  var i=r.parentNode.parentNode.rowIndex
-  document.getElementById('myTable').deleteRow(i)
-  }
-</script>
 </head>
 <body>
 <div id="div" class="demo">
     <div class="row">
         <div class="col-md-10">
-            请输入要添加的表格内容并按下添加键: <br>
-              <input  width="90" type="text" name="" class="form-control" id="txt1" value="请输入内容"/> 
-              <input  width="90" type="text" name="" class="form-control" id="txt2" value="请输入内容"/>
+            <input type="text" name="" class="form-control" id="txt"/>
         </div>
         <input id="add" type="button" class="btn btn-default" value="add"/>
     </div>
-    <table class="table" id="myTable">
+    <table class="table">
         <tr>
-            <th width="100px">表头--1</th>
-            <th width="100px">表头--2</th>
-            <th width="100px">表头--3</th>
+            <th>表头内容</th>
+            <th>表头内容</th>
+            <th>表头内容</th>
         </tr>
         <tr>
             <td>表格内容1</td>
             <td>表格内容1</td>
-            <!--<td><input type="button" value="删除" onClick="deleteRow(this)"></td>-->
-            <td align="center"><a class="del" href="javascript:;" onClick="deleteRow(this)">del</a></td>
+            <td><a class="del" href="javascript:;">del</a></td>
+            <!--添加href="javascript:;"，使得这个连接可以执行一段js代码，这里这段代码是空的 -->
         </tr>
         <tr>
             <td>表格内容2</td>
             <td>表格内容2</td>
-            <td align="center"><a class="del" href="javascript:;" onClick="deleteRow(this)">del</a></td>
-			<!--<td><input type="button" value="删除" onClick="deleteRow(this)"></td>-->
+            <td><a class="del" href="javascript:;" >del</a></td>
         </tr>
         <tr>
             <td>表格内容3</td>
             <td>表格内容3</td>
-            <td align="center"><input type="button" value="删除" onClick="deleteRow(this)"></td>
+            <td><a class="del" href="javascript:;">del</a></td>
         </tr>
         <tr>
             <td>表格内容4</td>
             <td>表格内容4</td>
-            <td align="center"><input type="button" value="删除" onClick="deleteRow(this)"></td>
+            <td><a class="del" href="javascript:;">del</a></td>
         </tr>
         <tr>
             <td>表格内容5</td>
             <td>表格内容5</td>
-            <td align="center"><input type="button" value="删除" onClick="deleteRow(this)"></td>
+            <td><a class="del" href="javascript:;">del</a></td>
         </tr>
     </table>
 </div>
@@ -86,29 +86,49 @@ function deleteRow(r)
         var tab = div.getElementsByTagName('table')[0];//html dom，返回div元素下第一个table标签
         var tr = tab.getElementsByTagName('tr');//返回table中的行
         var tb = tab.tBodies[0];//返回表格中tbody表体的一个数组，其中第一行，也就是表头
-        var txt1 = document.getElementById('txt1');//返回文本框
-        var txt2 = document.getElementById('txt2');//返回文本框
+        var txt = document.getElementById('txt');//返回文本框
         var add = document.getElementById('add');//返回按钮
-        //var del = getByCls(div, 'del');//通过函数，获得元素div下指定标签del的列表集，结果是数组。调用对应的函数，把值给del变量
+        var del = getByCls(div, 'del');//通过函数，获得元素div下指定标签del的列表集，结果是数组。调用对应的函数，把值给del变量
         
         add.onclick = function(){
             //函数表达式使得在点击add的时候添加表格行
-            var v1 = txt1.value;
-            var v2 = txt2.value;
+            var v = txt.value;
             var tr = document.createElement('tr');
             var td = document.createElement('td');
-            td.innerHTML = v1;
+            td.innerHTML = v;
             tr.appendChild(td);
             td = document.createElement('td');
-            td.innerHTML = v2;
+            td.innerHTML = '表格内容i';
             tr.appendChild(td);
             td = document.createElement('td');
-            td.innerHTML = '<td align="center"><input type="button" value="删除" onClick="deleteRow(this)"></td>';
+            td.innerHTML = '<a class="del" href="javascript:;">del</a>';
             tr.appendChild(td);
             tb.appendChild(tr);
-            length+=1;
         }
         
+
+        for(var i = 0; i <del.length; i++){
+              del[i].onclick = function(){
+               tb.removeChild(this.parentNode.parentNode);
+          }
+        }
+
+        function getByCls(obj, cls){                                
+            if(obj.getElementsByClassName){
+				 return obj.getElementsByClassName(cls);
+            } else {
+   
+                var all = document.all;
+                var reg = new RegExp('(^|\\s)' + cls + '(\\s|$)');
+                var res = [];
+                for(var i = 0; i < all.length; i++){
+                    if(reg.test(all[i].className)){
+                        res.push(all[i]);
+                    }
+                }
+                return res;
+            }
+        }
     }());
 </script>
 </body>
