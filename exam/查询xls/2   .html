@@ -1,0 +1,318 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<style type="text/css">
+div#container{width:900px;margin:0 auto;background-Color:#f0f0f0}
+</style>
+<script type="text/javascript">
+var x,y,z,w,contentx,contenty,contentz,contentid,contentall='';
+var contentw='<?xml version="1.0" encoding="gb2312" ?><node>';
+//********************解析获得xml文件*******************
+try //Internet Explorer
+  {
+  xmlDoc=new ActiveXObject("Microsoft.XMLDOM");
+  }
+catch(e)
+  {
+  try //Firefox, Mozilla, Opera, etc.
+    {
+    xmlDoc=document.implementation.createDocument("","",null);
+    }
+  catch(e) {alert(e.message)}
+  }
+try 
+  {
+  xmlDoc.async=false;
+  xmlDoc.load("node.xml");
+  }
+catch(e) {alert(e.message)}
+//********************解析获得xml文件*******************
+
+
+w=xmlDoc.getElementsByTagName("id");
+x=xmlDoc.getElementsByTagName("name");
+y=xmlDoc.getElementsByTagName("sex");
+z=xmlDoc.getElementsByTagName("born");
+
+</SCRIPT> 
+
+<script type="text/javascript">
+//使用input来查询
+function getxmlnodevaluename(){
+var tmpValue=document.getElementById('chaname').value;
+var aa=xmlDoc.documentElement.childNodes;
+var showflag=false;
+for(var i=0;i<aa.length;i++)
+{
+    if(aa[i].childNodes[0].childNodes[0].nodeValue==tmpValue)
+     { 
+     showflag=true;
+     break; 
+     }
+} 
+
+if(showflag)
+{
+ createTable(tmpValue);
+}
+else
+{
+alert("请输入查询名字，或输入的查询名字有错！")
+}
+}
+</SCRIPT>
+
+
+<script type="text/javascript">
+function getselect(){
+ var selectid=objselect.options[0].value;
+ var selecttext=objselect.options[0].text;
+ var currselectindex=document.all.objselect.selectedIndex;
+ var currselectvalue=document.all.objselect.value; 
+ var currselecttext=document.all.objselect.options[currselectindex].text; 
+ return currselecttext;
+}
+
+//通过所获取的列表信息男、女来查询xml数据信息
+function getxmlnodevaluesex(){
+var getselectnum=getselect();
+createTable(getselectnum);
+}
+</script>
+
+
+
+<script type="text/javascript"> 
+//创建一个表对象
+var mytable=document.createElement("table");
+mytable.id='ab';
+//创建一个表头函数
+var mythead=document.createElement("thead");
+
+function createTableHead( )
+{
+
+document.getElementById('show').innerHTML="12";  
+  for(a=0;a<1;a++)
+  {
+     var myrow=document.createElement("tr");
+	 for(b=0;b<1;b++)
+	 {
+           var mytd=document.createElement("td");
+	   mytd.innerHTML="表 头 " +(w[0].nodeName);
+	   mytd.style.cssText="text-align:center;";
+   	   myrow.appendChild(mytd);
+           
+           
+           var mytd=document.createElement("td");
+	   mytd.innerHTML="表 头 " +(x[0].nodeName);
+	   mytd.style.cssText="text-align:center;";
+           myrow.appendChild(mytd);
+ 	   
+           var mytd=document.createElement("td");
+	   mytd.innerHTML="表 头 " +(y[0].nodeName);
+	   mytd.style.cssText="text-align:center;";
+	   myrow.appendChild(mytd); 
+	  	   
+
+
+           var mytd=document.createElement("td");
+	   mytd.innerHTML="表 头 " +(z[0].nodeName);
+	   mytd.style.cssText="text-align:center;";
+	   myrow.appendChild(mytd);
+	      
+
+	 }
+     	 mythead.appendChild(myrow);
+  }
+mythead.style.cssText="background-Color:#4F4f4f;color:#990; font-size:18px; font-weight:600; width:900px;";
+}
+
+//创建一个表脚对象
+var mytfoot=document.createElement("tfoot");
+mytfoot.id='footid';
+function createTableFoot()
+{
+ for(c=0;c<1;c++)
+  {
+     var myrow=document.createElement("tr");
+	 for(d=0;d<1;d++)
+	 {
+	   var mytd=document.createElement("td");
+	//if(chaflag=="1"){mytd.innerHTML="备注说明：总共有 "+" 数据";}
+	//  	else if(DEnode[i].childNodes[0].childNodes[0].nodeValue==chaflag) 
+  //    {  mytd.innerHTML="备注说明：总共有 "+numfootb+" 数据";}
+//	else if((DEnode[i].childNodes[1].childNodes[0].nodeValue==chaflag)
+//	 {mytd.innerHTML="备注说明：总共有 "+" 数据";}
+  	// if(DEnode[i].childNodes[0].childNodes[0].nodeValue==chaflag) 
+      mytd.innerHTML="备注说明：总共有 "+" 数据";
+
+       mytd.style.cssText="text-align:center;";
+	   mytd.colSpan="10";
+	   myrow.appendChild(mytd);
+	 }
+	 mytfoot.appendChild(myrow);
+  }
+ mytfoot.style.cssText="background-color:#f0f0f0; color:#000; font-size:14px; font-weight:600; width:900px;";
+}
+
+
+
+
+//创建一个表体函数
+ var mytbody=document.createElement("tbody");
+function createTableBody(chaflag )
+{
+   
+  //mytable.cellSpacing="2px";
+var DEnode=xmlDoc.documentElement.childNodes;
+
+
+  //创建一个表体对象
+
+for(var i=0;i<DEnode.length;i++){
+ if(chaflag=="1")
+{     var myrow=document.createElement("tr");
+	   var mytd=document.createElement("td");
+	   mytd.style.backgroundColor="rgb(230,0,10)"; 
+	   mytd.innerHTML=w[i].getAttributeNode("num").nodeValue;
+	   myrow.appendChild(mytd);
+
+           var mytd=document.createElement("td");
+	  mytd.style.backgroundColor="rgb(170,170,170)";	   
+
+	   mytd.innerHTML=x[i].childNodes[0].nodeValue;
+	   myrow.appendChild(mytd);
+
+var mytd=document.createElement("td");
+	  mytd.style.backgroundColor="rgb(170,170,170)";	   
+ 
+	   mytd.innerHTML=y[i].childNodes[0].nodeValue;
+	   myrow.appendChild(mytd);
+
+var mytd=document.createElement("td");
+	  mytd.style.backgroundColor="rgb(170,170,170)";	   
+
+	   mytd.innerHTML=z[i].childNodes[0].nodeValue;
+	   myrow.appendChild(mytd);
+	
+	 mytbody.appendChild(myrow);
+
+ }
+ else if(DEnode[i].childNodes[0].childNodes[0].nodeValue==chaflag) 
+  {
+  
+    var myrow=document.createElement("tr");
+	   var mytd=document.createElement("td");
+	   mytd.style.backgroundColor="rgb(230,0,10)"; 
+	   mytd.innerHTML=w[i].getAttributeNode("num").nodeValue;
+	   myrow.appendChild(mytd);
+
+           var mytd=document.createElement("td");
+	  mytd.style.backgroundColor="rgb(170,170,170)";	   
+
+	   mytd.innerHTML=x[i].childNodes[0].nodeValue;
+	   myrow.appendChild(mytd);
+
+var mytd=document.createElement("td");
+	  mytd.style.backgroundColor="rgb(170,170,170)";	   
+ 
+	   mytd.innerHTML=y[i].childNodes[0].nodeValue;
+	   myrow.appendChild(mytd);
+
+var mytd=document.createElement("td");
+	  mytd.style.backgroundColor="rgb(170,170,170)";	   
+
+	   mytd.innerHTML=z[i].childNodes[0].nodeValue;
+	   myrow.appendChild(mytd);
+	
+	 mytbody.appendChild(myrow);
+	 numfootb=+1;
+  }
+else if(DEnode[i].childNodes[1].childNodes[0].nodeValue==chaflag){    
+
+	var myrow=document.createElement("tr");
+	   var mytd=document.createElement("td");
+	   mytd.style.backgroundColor="rgb(230,0,10)"; 
+	   mytd.innerHTML=w[i].getAttributeNode("num").nodeValue;
+	   myrow.appendChild(mytd);
+
+           var mytd=document.createElement("td");
+	  mytd.style.backgroundColor="rgb(170,170,170)";	   
+
+	   mytd.innerHTML=x[i].childNodes[0].nodeValue;
+	   myrow.appendChild(mytd);
+
+var mytd=document.createElement("td");
+	  mytd.style.backgroundColor="rgb(170,170,170)";	   
+ 
+	   mytd.innerHTML=y[i].childNodes[0].nodeValue;
+	   myrow.appendChild(mytd);
+
+var mytd=document.createElement("td");
+	  mytd.style.backgroundColor="rgb(170,170,170)";	   
+
+	   mytd.innerHTML=z[i].childNodes[0].nodeValue;
+	   myrow.appendChild(mytd);
+	
+	 mytbody.appendChild(myrow);
+     }
+
+      
+  }
+
+}
+
+
+function createTable(chaflag)
+{ 
+
+var numfoota,numfootb=0,numfootc;
+createTableHead();
+createTableBody(chaflag);
+createTableFoot(chaflag);
+  //将表头追加到表格
+  mytable.appendChild(mythead);
+  //将表体追加到表格
+
+  mytable.appendChild(mytbody);
+  //将表脚追加到表格
+ mytable.appendChild(mytfoot);
+  //追加对象样式
+ mytable.style.cssText="color:#000; background-color:#6c6c6c;border:10px;border-color: #666666; width:900px;";
+document.getElementById('show').innerHTML="";    
+show.appendChild(mytable);
+
+}
+</script>
+ 
+</head>
+
+
+
+<body>
+<div id="container">
+全部查询：
+<input type="button" align="center" value="查询" onClick="createTable(1)"  style="width: 60px"/>
+<br/><br/>
+
+条件查询：
+<select id="objselect" style="width: 60px">
+<option  value="id1">男</option>
+<option  value="id2">女</option>
+</select>
+<input name="Button3" type="button" value="提交"  onclick="getxmlnodevaluesex()" style="width: 60px"/>
+<br/><br/>
+
+精确查询：
+<input name="Button2" type="text" id="chaname" style="width: 60px"/>
+<input name="Button1" type="button" value="提交"  onclick="getxmlnodevaluename()" style="width: 60px"/>
+<br/><br/>
+
+<div id="show" align="center"></div>
+<br/><br/>
+</div>
+
+
+</body>
+</html>
