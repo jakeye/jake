@@ -1,0 +1,115 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>表格的添加与删除</title>
+    <style type="text/css">
+        .demo{ width:600px;margin:50px auto; text-align:left; padding:0; }   
+		<!--margin设置外边距，上、下外边距为50，左右自适应居中；内边距为0；文本为左对齐-->
+        .row{ margin-bottom:20px;}
+       
+		.table{border-collapse:collapse; border:1px solid #ccc;}
+        /**表格边框合并；实线灰色**/
+		
+		.table th, .table td{ border:1px solid #ccc;}    
+		/**本表格下的表头和单元格共同拥有的属性**/
+        
+		.table th{background: #c2c287;}
+
+		.table tr:nth-child(even) td{background: #95caca;}  
+		.table tr:nth-child(odd) td{background: #b8b8dc;}  
+   		/**匹配属于tr元素的特定类型,odd 和 even(奇数)是可用于匹配下标是奇数或偶数的子元素;**/
+
+        .table tr:hover td{background: #e1c4c4;}
+		/**鼠标经过的行会改变单元格的背景颜色**/
+		
+        .table tr.on td{background: #ffffff;} /**??**/
+    </style>
+	
+<script type="text/javascript">
+function deleteRow(r)
+  {
+  var i=r.parentNode.parentNode.rowIndex
+  document.getElementById('myTable').deleteRow(i)
+  }
+</script>
+</head>
+<body>
+<div id="div" class="demo">
+    <div class="row">
+        <div class="col-md-10">
+            请输入要添加的表格内容并按下添加键: <br>
+              <input  width="90" type="text" name="" class="form-control" id="txt1" value="请输入内容"/> 
+              <input  width="90" type="text" name="" class="form-control" id="txt2" value="请输入内容"/>
+        </div>
+        <input id="add" type="button" class="btn btn-default" value="add"/>
+    </div>
+    <table class="table" id="myTable">
+        <tr>
+            <th width="100px">表头--1</th>
+            <th width="100px">表头--2</th>
+            <th width="100px">表头--3</th>
+        </tr>
+        <tr>
+            <td>表格内容1</td>
+            <td>表格内容1</td>
+            <!--<td><input type="button" value="删除" onClick="deleteRow(this)"></td>-->
+            <td align="center"><a class="del" href="javascript:;" onClick="deleteRow(this)">del</a></td>
+        </tr>
+        <tr>
+            <td>表格内容2</td>
+            <td>表格内容2</td>
+            <td align="center"><a class="del" href="javascript:;" onClick="deleteRow(this)">del</a></td>
+			<!--<td><input type="button" value="删除" onClick="deleteRow(this)"></td>-->
+        </tr>
+        <tr>
+            <td>表格内容3</td>
+            <td>表格内容3</td>
+            <td align="center"><input type="button" value="删除" onClick="deleteRow(this)"></td>
+        </tr>
+        <tr>
+            <td>表格内容4</td>
+            <td>表格内容4</td>
+            <td align="center"><input type="button" value="删除" onClick="deleteRow(this)"></td>
+        </tr>
+        <tr>
+            <td>表格内容5</td>
+            <td>表格内容5</td>
+            <td align="center"><input type="button" value="删除" onClick="deleteRow(this)"></td>
+        </tr>
+    </table>
+</div>
+<script>
+    (function(){
+    //密名函数，创建一个函数并立即调用之，即在网页加载时候调用
+        var div = document.getElementById('div'); //html dom，获得div元素
+        var tab = div.getElementsByTagName('table')[0];//html dom，返回div元素下第一个table标签
+        var tr = tab.getElementsByTagName('tr');//返回table中的行
+        var tb = tab.tBodies[0];//返回表格中tbody表体的一个数组，其中第一行，也就是表头
+        var txt1 = document.getElementById('txt1');//返回文本框
+        var txt2 = document.getElementById('txt2');//返回文本框
+        var add = document.getElementById('add');//返回按钮
+        //var del = getByCls(div, 'del');//通过函数，获得元素div下指定标签del的列表集，结果是数组。调用对应的函数，把值给del变量
+        
+        add.onclick = function(){
+            //函数表达式使得在点击add的时候添加表格行
+            var v1 = txt1.value;
+            var v2 = txt2.value;
+            var tr = document.createElement('tr');
+            var td = document.createElement('td');
+            td.innerHTML = v1;
+            tr.appendChild(td);
+            td = document.createElement('td');
+            td.innerHTML = v2;
+            tr.appendChild(td);
+            td = document.createElement('td');
+            td.innerHTML = '<td align="center"><input type="button" value="删除" onClick="deleteRow(this)"></td>';
+            tr.appendChild(td);
+            tb.appendChild(tr);
+            length+=1;
+        }
+        
+    }());
+</script>
+</body>
+</html>

@@ -1,0 +1,110 @@
+﻿<style type="text/css">
+ 
+
+
+/*基本信息*/
+body {font:12px Tahoma;margin:0px;text-align:center;
+
+
+ }
+
+
+/*页面层容器*/
+#container {width:100%;background-image:url('../images/10011.jpg');
+background-repeat:repeat-x;
+
+background-color:#F8F0E6;
+}
+
+/*页面头部*/
+#Header {
+         width:1056px;margin:0 auto;height:162px;
+         background:url("../images/header1.jpg") no-repeat ;
+		/* background-color:#FFCCCC*/
+        }
+        
+/*页面主体*/
+
+#PageBody1 {width:1056px;margin:0 auto;height:380px; overflow:hidden  
+/*background-color:#FFCCCC*/
+}
+
+
+
+#picBox{width:1056px; height:370px; margin:50px auto; overflow:hidden; position:relative;}
+#picBox ul#show_pic{ margin:0; padding:0; list-style:none; height:370px; width:3168px; position:absolute;}
+#picBox ul#show_pic li{ float:left; margin:0; padding:0; height:370px;}
+#picBox ul#show_pic li img{ display:block;}
+
+
+#icon_num{ position:absolute; bottom:0px; right:10px;}
+#icon_num li{ float:left; width:15px; height:15px; list-style:none; color:#39F; text-align:center;  cursor:pointer; padding:0; margin:0;margin-right:5px;}
+#icon_num li:hover,#icon_num li.active{  color:#fff;}
+
+
+
+
+
+#PageBody2 {width:1056px;margin:0 auto;height:330px; 
+/*background-color:#FFCCCC*/
+}
+
+#PageBody3 {width:1058px;margin:0 auto;height:202px;
+/*background-color:#FFCCCC*/
+/*background:#FFF*/}
+
+#Sidebar {
+width:529px; /*设定宽度*/
+text-align:left; /*文字左对齐*/
+float:left; /*浮动居左*/
+clear:left; /*不允许左侧存在浮动*/
+overflow:hidden; /*超出宽度部分隐藏*/
+height:192px;
+/*background-color:#FFCCFF*/}
+
+#Sidebar1 {
+width:525px; /*设定宽度*/
+text-align:left; /*文字左对齐*/
+font-size: x-large;
+
+height:42px;
+font-family:楷体;
+overflow:hidden; /*超出宽度部分隐藏*/
+
+float:left; /*浮动居左*/
+clear:left; /*不允许左侧存在浮动*/
+
+/*background-color:#F2F0EF*/
+background-color:#FFFFFF}
+
+#Sidebar2 {
+width:525px; /*设定宽度*/
+text-align:left; /*文字左对齐*/
+float:left; /*浮动居左*/
+overflow:hidden; /*超出宽度部分隐藏*/
+height:150px;
+background-color:#FFFF99
+}
+
+
+
+
+#MainBody{
+width:525px; /*设定宽度*/
+text-align:left; /*文字左对齐*/
+float:right; /*浮动居左*/
+clear:right; /*不允许左侧存在浮动*/
+overflow:hidden; /*超出宽度部分隐藏*/
+height:192px;
+/*background-color:#FF66FF;*/
+}
+
+
+
+/*页面底部*/
+#Footer {width:1056px;margin:0 auto;height:85px;background:rgb(245,239,240);
+font-size:23px;
+text-align:center;
+background-color:#CCFFFF
+
+}

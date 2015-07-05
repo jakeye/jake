@@ -1,0 +1,51 @@
+﻿*{ margin:0; padding:0;} 
+body{font:12px/1.125 Arial,Helvetica,sans-serif;background:#fff;} 
+table{border-collapse:collapse;border-spacing:0;} 
+fieldset,img{border:0;} 
+article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{display:block} 
+q:before,q:after{content:'';} 
+a:focus,input,textarea{outline-style:none;} 
+input[type="text"],input[type="password"],textarea{outline-style:none;-webkit-appearance:none;} 
+ textarea{resize:none} 
+ address,caption,cite,code,dfn,em,i,th,var{font-style:normal;font-weight:normal;} 
+ legend{color:#000;} 
+ abbr,acronym{border:0;font-variant:normal;} 
+ a{color:#0a8cd2;text-decoration:none;cursor: pointer;} 
+ a:hover{text-decoration:underline;} 
+ .clearfix:after{content:".";display:block;height:0;clear:both;visibility:hidden;} 
+ .clearfix{display:inline-block;} 
+ .clearfix{display:block;} 
+ .clear{clear:both;height:0;font:0/0 Arial;visibility:hidden;} 
+ .none{display:none} 
+ /* main.css */ 
+
+ 
+ .wrapper{text-align:center;width:980px;margin:0px auto;position:relative} 
+ #index-banner{width:980px;height:210px} 
+ #box{width: 980px; position: relative; height: 210px; overflow:hidden;}
+/*box作用将ul下li的各个图片包住，overflow:hidden;影藏多余内容，内容会被修剪，并且其余内容是不可见的。*/
+ #box ul{ z-index:2;} 
+ li{list-style:none;} 
+ .img-li-float{float:left} 
+  
+ 
+ .banner-ico-box{position:absolute;left:0;bottom:30px;width:100%;text-align:center; z-index:4;} 
+  /**类.banner-ico-box用来实现轮播图片上面的五个点，定义了一个容器块，
+  position:absolute;left:0;bottom:30px;绝对定位，相对于父容器，离左是0，离下面是10px。
+ 绝对定位。相对于其包含块定位，包含本元素的父元素。包含块可能是文档中的另一个元素或者是初始包含块。
+ 元素原先在正常文档流中所占的空间会关闭，就好像元素原来不存在一样。
+ 元素定位后生成一个块级框，而不论原来它在正常流中生成何种类型的框。
+ z-index 属性设置元素的堆叠顺序。拥有更高堆叠顺序的元素总是会处于堆叠顺序较低的元素的前面。
+注释：元素可拥有负的 z-index 属性值。
+注释：Z-index 仅能在定位元素上奏效（例如 position:absolute;）！默认是0，此处设置为z-index:4；第4级别**/
+
+ .banner-ico-box a{width:10px;height:10px;display:inline-block;background:url(../img/banner-btn.png) -16px -50px no-repeat;margin-right:8px} 
+ /**display:inline-block;将调用这个类的标签就转换为行内区块元素，可以设置高度宽度。在这里就是同时达到所有使用了a标签的块状，在同一行显示。
+ **/
+ .banner-ico-box .active{width:10px;height:10px;display:inline-block;background:url(../img/banner-btn.png) -1px -50px no-repeat} 
+ 
+ .banner-left-btn,.banner-right-btn{ z-index:3;width:50px;height:50px;display:inline-block;position:absolute;top:50%;margin-top:-25px;} 
+ /*top:50%;margin-top:-25px;使得箭头处于中部*/
+ .banner-left-btn{background:url(../img/banner-btn.png) 0 0 no-repeat;left:0;} 
+ .banner-right-btn{background:url(../img/banner-btn.png) -50px 0 no-repeat;right:0;} 
+ /*-50px 0使得选择向右的箭头*/

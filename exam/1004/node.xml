@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="gb2312" ?>
+<node>
+
+
+
+<id num="001">
+<name>张三</name>
+<sex>男</sex>
+<born>1987.01.01</born>
+</id>
+<id num="002">
+<name>李四</name>
+<sex>女</sex>
+<born>1987.01.02</born>
+</id>
+<id num="003">
+<name>王五</name>
+<sex>男</sex>
+<born>1987.01.03</born>
+
+</id>
+<id num="004">
+<name>赵六</name>
+<sex>男</sex>
+<born>1987.01.04</born>
+</id>
+
+<id num="005">
+<name>钱六</name>
+<sex>男</sex>
+<born>1987.01.05</born>
+</id>
+
+
+
+<id num="006">
+<name>张七</name>
+<sex>女6</sex>
+<born>1987.01.06</born>
+</id>
+
+
+</node>
